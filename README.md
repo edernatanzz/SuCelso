@@ -1,6 +1,6 @@
 # SuCelso-Student-Management-System
 
-gitclone e para executar o projeto instale o python e django : pip install python
+gitclone e para executar o projeto instale o python e django : pip install python e depois 
 2-pip install django 
 
 
