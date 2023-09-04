@@ -73,7 +73,9 @@ WSGI_APPLICATION = 'SuCelso.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-'''
+
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -81,9 +83,12 @@ DATABASES = {
     }
 }
 
-'''
+
+
+
 
 '''erro aqui data bases'''
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -94,7 +99,6 @@ DATABASES = {
         'PORT':'3306'
     }
 }
-'''
 
 '''
 
