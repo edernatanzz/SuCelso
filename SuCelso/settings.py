@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 
+from mysqlx import Auth
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,7 +34,7 @@ ALLOWED_HOSTS = []
 MEDIA_URL="/media/"
 MEDIA_ROOT=os.path.join(BASE_DIR,"media")
 
-STATIC_URL_URL="/static/"
+STATIC_URL="/static/"
 STATIC_ROOT=os.path.join(BASE_DIR,"static")
 # Application definition
 
@@ -81,34 +83,29 @@ WSGI_APPLICATION = 'SuCelso.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 
+#
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',  # Engine do banco de dados (pode variar dependendo do seu banco)
+        'NAME': 'SuCelso',  # Nome do banco de dados
+        'USER': 'root',  # Nome de usuário do banco de dados
+        'PASSWORD': '123eder123',  # Senha do banco de dados
+        'HOST': 'localhost',  # Host onde o banco de dados está localizado
+        'PORT': '',  # Porta do banco de dados (deixe em branco para usar a porta padrão)
     }
 }
 
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
 
 
-'''erro aqui data bases'''
 
-
-
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME':'student_management_system',
-        'USER' :'student_management_system',
-        'PASSWORD':'student_management_password',
-        'HOST':'localhost',
-        'PORT':'3306'
-    }
-}
-
-'''
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -150,3 +147,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+#AUTH_USER_MODEL = 'student_management_app.CustomUser'
+AUTH_USER_MODEL = "student_management_app.CustomUser"
+
