@@ -48,13 +48,24 @@
           <div class="col-12">
             <button type="submit" class="btn btn-primary btn-block">Entrar</button>
           </div>
+          </div>
+          <div class="row">
+          {% if messages %}
+          <div class="col-12">
+            {% for message in messages %}
+            {% if message.tags == 'error' %}
+            <span class="alert alert-danger" style="margin-top:10px ">{{ message }}</span>
+            {% endif %}
+            {% endfor %}
+          </div>
+          {% endif %}
           <!-- /.col -->
         </div>
       </form>
 
 
       
-          
+          <!--
         <div class="social-auth-links text-center mb-3">
           <p>- Ou -</p>
           <a href="#" class="btn btn-block btn-primary">
@@ -64,7 +75,7 @@
             <i class="fab fa-google-plus mr-2"></i> Entrar usando Google+
           </a>
         </div>
-      
+      -->
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
