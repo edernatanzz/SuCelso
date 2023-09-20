@@ -46,11 +46,12 @@ class Subjects(models.Model):
 class Students(models.Model):
     id = models.AutoField(primary_key=True)
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    glender=models.CharField(max_length=255)
+    gender = models.CharField(max_length=255)  # Corrigir o nome do campo para 'gender'
     profile_pic = models.FileField()
     course_id = models.ForeignKey(Courses, on_delete=models.DO_NOTHING)
+    address = models.TextField()
     session_start_year = models.DateField()
-    session_end_year=models.DateField()
+    session_end_year = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
@@ -137,8 +138,8 @@ def create_user_profile(sender,instance,created,**kwargs):# kwargs : permite que
             AdminHOD.objects.create(admin=instance)
         if instance.user_type==2:
             Staffs.objects.create(admin=instance)
-        if instance.user_type==3:
-            Students.objects.create(admin=instance)
+        Students.objects.create(admin=instance, course_id=Courses.objects.get(id=1), session_start_year="2023-01-01", session_end_year="2028-01-01", address="", profile_pic="", gender="Masculino")
+
             
             
 @receiver(post_save,sender=CustomUser)

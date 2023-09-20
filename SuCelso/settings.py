@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'SuCelso.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # Engine do banco de dados (pode variar dependendo do seu banco)
-        'NAME': 'SuCelso',  # Nome do banco de dados
+        'NAME': 'sucelso',  # Nome do banco de dados
         'USER': 'root',  # Nome de usuário do banco de dados
         'PASSWORD': '123eder123',  # Senha do banco de dados
         'HOST': 'localhost',  # Host onde o banco de dados está localizado
