@@ -17,11 +17,11 @@ Add Conteudo
             {% csrf_token %}
             <div class="card-body">
               <div class="form-group">
-                <label >Nome do Curso </label>
-                <input type="text" class="form-control" name="course" placeholder="Nome do curso">
+                <label >Adicionar Conteudo </label>
+                <input type="text" class="form-control" name="subject_name" placeholder="Nome do curso">
               </div>
                <div class="form-group">
-                <label>Nome do Curso</label>
+                <label> Curso </label>
                 <select class="form-control" name="course">
                     {% for course in courses %}
                     <option value="{{ course.id }}">{{ course.course_name }}</option>
@@ -31,7 +31,7 @@ Add Conteudo
 
 
             <div class="form-group">
-              <label>Nome do Curso</label>
+              <label>Selecione o Professor </label>
               <select class="form-control" name="staff">
                   {% for staff in staffs %}
                   <option value="{{ staff.id }}">{{ staff.first_name }} {{ staff.last_name }}</option>
@@ -61,7 +61,7 @@ Add Conteudo
             <!-- /.card-body -->
 
             <div class="card-footer">
-              <button type="submit" class="btn btn-primary btn-block">Adicionar Curso</button>
+              <button type="submit" class="btn btn-primary btn-block">Adicionar Conteudo</button>
             </div>
           </form>
         </div>

@@ -1,6 +1,7 @@
+from audioop import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from student_management_app.models import Courses, CustomUser, Students
+from student_management_app.models import Courses, CustomUser, Staffs, Students, Subjects
 from django.contrib import messages
 
 
@@ -129,3 +130,48 @@ def add_student_save(request):
 
     # Certifique-se de retornar um HttpResponse em todos os casos
     return HttpResponse('Algo deu errado ao processar a solicitação.')
+
+def add_subject(request):
+    courses=Courses.objects.all()
+    staffs=CustomUser.objects.filter(user_type=2)
+    return render(request,"hod_template/add_subject_template.html",{"staffs":staffs,"courses":courses})
+def add_subject_save(request):
+    if request.method != "POST":
+        return HttpResponse("<h2>Method Not Allowed</h2>")
+    else:
+        subject_name = request.POST.get("subject_name")
+        course_id = request.POST.get("course")
+        staff_id = request.POST.get("staff")
+
+        # Verificar se o campo subject_name está em branco
+        if not subject_name:
+            messages.error(request, "O campo de nome do conteúdo não pode estar em branco.")
+            return HttpResponseRedirect("/add_subject")
+
+        try:
+            course = Courses.objects.get(id=course_id)
+            staff = CustomUser.objects.get(id=staff_id)
+
+            subject = Subjects(subject_name=subject_name, course_id=course, staff_id=staff)
+            subject.save()
+
+            messages.success(request, "Conteúdo adicionado com sucesso")
+            return HttpResponseRedirect("/add_subject")
+        except Exception as e:
+            messages.error(request, "Ops, algo deu errado ao adicionar conteúdo: " + str(e))
+            return HttpResponseRedirect("/add_subject")
+        
+def manage_staff(request):
+    staffs = Staffs.objects.all()  # Supondo que você tenha um modelo chamado Staffs para armazenar informações sobre os funcionários.
+    return render(request, 'hod_template/manage_staff_template.html',{"staffs":staffs})
+
+def manage_student(request):
+    students=Students.objects.all()
+    return render(request, 'hod_template/manage_student_template.html', {"students":students})
+
+def manage_course(request):
+    courses=Courses.objects.all()
+    return render(request, 'hod_template/manage_course_template.html', {"courses":courses})
+def manage_subject(request):
+    subjects=Subjects.objects.all()
+    return render(request, 'hod_template/manage_subject_template.html', {"subjects":subjects})
