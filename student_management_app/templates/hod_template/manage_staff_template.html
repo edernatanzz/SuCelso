@@ -34,7 +34,7 @@ Gerenciar Profissionais
                     <th>Usuario</th>
                     <th>Email</th>
                     <th>Endereço</th>
-                    <th>Last Login</th>
+                    
                     <th>Data de cadastro</th>
                     <th>Ação</th>
                   </tr>
@@ -48,9 +48,9 @@ Gerenciar Profissionais
                     <td>{{ staff.admin.username }}</td>
                     <td>{{ staff.admin.email }}</td>
                     <td>{{ staff.address }}</td>
-                    <td>{{ staff.admin.last_login }}</td>
+                  
                     <td>{{ staff.admin.date_joined }}</td>
-                    <td><a href="/edit_staff/{{ staff.admin.id }}" class="btn btn-success">Editar</a></td>
+                    <td><a href="/editar_profissional/{{ staff.admin.id }}" class="btn btn-success">Editar</a></td>
                   </tr>
                 {% endfor %}
                 </tbody>

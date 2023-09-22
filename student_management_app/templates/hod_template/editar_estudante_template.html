@@ -1,0 +1,108 @@
+{% extends 'hod_template/base_template.html' %}
+{% block page_title %}
+Editar Estudantes| usuario {{ student.user.username }} | #ID : {{ student.admin.id }}
+{% endblock page_title %}
+{% block main_content %}
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card-header">
+            <h3 class="card-title">Gerenciar Estudantes</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form" action="/editar_estudante_save" method="post">
+            {% csrf_token %}
+            <div class="card-body">
+              <div class="form-group">
+                <label >Endereço de email</label>
+                <input type="email" class="form-control" name="email" placeholder="Enter email" name="email" value="{{student.admin.email}}">
+              </div>
+              <div class="form-group">
+                <label>Senha</label>
+                <input type="password" class="form-control" placeholder="Password" name="password" value="{{student.admin.password}}">
+              </div>
+              <div class="form-group">
+                <label>Primeiro nome</label>
+                <input type="text" class="form-control" placeholder="Firt Name"name="first_name" value="{{student.admin.first_name}}">
+              </div>
+              <div class="form-group">
+                <label>Sobrenome</label>
+              <input type="text" class="form-control" placeholder="Last Name"name="last_name" value="{{student.admin.last_name}}">
+              <div class="form-group">
+              </div>
+               <label>Nome de Usuario</label>
+              <input type="text" class="form-control" placeholder="Nome de usuario"name="username" value="{{student.admin.username}}">
+              <input type="hiddent" name="student_id" value="{{student.admin.id}}">
+
+            </div>
+              <div class="form-group">
+                <label>Endereço</label>
+                <input type="text" class="form-control" placeholder="Seu endereço "name="address" value="{{student.address}}">
+              </div>
+              <div class="form-group">
+                <label>Nome do Curso</label>
+                <select class="form-control" name="course">
+                   {% for course in courses %}
+            <option value="{{ course.id }}" {% if course.id == student.course_id.id %} selected {% endif %}>{{ course.course_name }}</option>
+        {% endfor %}
+                </select>
+            </div>
+            
+            
+            <div class="form-group">
+                <label>Sexo</label>
+                <select class="form-control" name="sex"> 
+                  <option {% if student.gender|lower == "masculino" %} selected {% endif %} value="Masculino">Masculino</option>
+                  <option {% if student.gender|lower == "feminino" %} selected {% endif %} value="Feminino">Feminino</option>
+                </select>
+            </div>
+            
+             
+            <div class="form-group">
+              <label>Data de Inicio da Sessão</label>
+              <input type="date" class="form-control" placeholder="Data de inicio da sessão" name="session_start" value="{{student.session_start_year|date:'Y-m-d'}}">
+          </div>
+          
+
+          
+          <div class="form-group">
+              <label>Fim da Sessão</label>
+              <input type="date" class="form-control" placeholder="Data de fim da sessão" name="session_end" value="{{student.session_end_year|date:'Y-m-d'}}" >
+          </div>
+          
+
+            <div class="form-group">
+              {% if messages %}             
+                  {% for message in messages %}
+                      {% if message.tags == 'error' %}
+                          <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                      {% endif %}
+                      {% if message.tags == 'success' %}
+                          <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                      {% endif %}
+                  {% endfor %}
+              {% endif %}
+          </div>
+          
+
+             
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary btn-block">Salvar Alterações</button>
+            </div>
+          </form>
+        </div>
+        
+
+      </div>
+        
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+  {% endblock main_content %}
+ 

@@ -175,3 +175,89 @@ def manage_course(request):
 def manage_subject(request):
     subjects=Subjects.objects.all()
     return render(request, 'hod_template/manage_subject_template.html', {"subjects":subjects})
+
+def editar_profissional(request,staff_id):
+    staff=Staffs.objects.get(admin=staff_id )
+    return render(request, 'hod_template/editar_profissional_template.html', {"staff":staff})    
+
+def editar_profissional_save(request):
+    if request.method!="POST":
+        return HttpResponse("<h2> Metodo não permitido </h2>")
+    else:
+        staff_id=request.POST.get('staff_id')
+        first_name=request.POST.get('first_name')
+        last_name=request.POST.get('last_name')
+        email=request.POST.get('email')
+        username=request.POST.get('username')
+        address=request.POST.get('address')
+        
+        try:        
+            user=CustomUser.objects.get(id=staff_id)
+            user.first_name=first_name
+            user.last_name=last_name
+            user.email=email
+            user.username=username
+            user.address=address
+            user.save()
+            
+            
+            staff_model=Staffs.objects.get(admin=staff_id)
+            staff_model.address=address
+            staff_model.save()
+            messages.success(request, "Dados alterados com sucesso")
+            return HttpResponseRedirect("/editar_profissional/"+staff_id)
+        
+        except Exception as e:
+            messages.error(request, "Ops, algo deu errado ao alterar dados : " + str(e))
+            return HttpResponseRedirect("/editar_profissional/"+staff_id)
+            
+            
+            
+def editar_estudante(request, student_id):
+    student=Students.objects.get(admin=student_id)
+    courses=Courses.objects.all()
+    return render(request,"hod_template/editar_estudante_template.html", {"student":student,"courses": courses})
+    
+
+def editar_estudante_save(request):
+    if request.method!='POST':
+        return HttpResponse("Metodo não permitido ")
+    else:
+        student_id=request.POST.get("student_id")
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        address = request.POST.get('address')
+        session_start = request.POST.get('session_start')
+        session_end = request.POST.get('session_end')
+        course_id = request.POST.get('course')
+        sex = request.POST.get('sex')
+        
+        try:
+            user=CustomUser.objects.get(id=student_id)
+            user.first_name=first_name
+            user.last_name=last_name
+            user.username=username
+            user.email=email
+            user.save()
+            
+            student=Students.objects.get(admin=student_id)
+            student.address=address
+            student.session_start_year=session_start
+            student.session_end_year=session_end
+            student.gender=sex
+            
+            course=Courses.objects.get(id=course_id)
+            student.course_id=course
+            student.save()
+            messages.success(request, "Dados alterados com sucesso")
+            return HttpResponseRedirect("/editar_estudante/"+student_id)
+        
+        except Exception as e:
+            messages.error(request, "Ops, algo deu errado ao alterar dados : " + str(e))
+            return HttpResponseRedirect("/editar_estudante/"+student_id)
+                
+            
+            
+        

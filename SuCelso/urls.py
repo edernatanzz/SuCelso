@@ -25,4 +25,10 @@ urlpatterns = [
     path('manage_student',HodViews.manage_student),
     path('manage_course',HodViews.manage_course),
     path('manage_subject',HodViews.manage_subject),
+    path('editar_profissional/<str:staff_id>',HodViews.editar_profissional),
+    path('editar_profissional_save',HodViews.editar_profissional_save),
+    path('editar_estudante/<int:student_id>/',HodViews.editar_estudante),
+    path('editar_estudante_save',HodViews.editar_estudante_save),
+
+   
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
