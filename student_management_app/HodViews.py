@@ -134,6 +134,7 @@ def add_student_save(request):
 def add_subject(request):
     courses=Courses.objects.all()
     staffs=CustomUser.objects.filter(user_type=2)
+    
     return render(request,"hod_template/add_subject_template.html",{"staffs":staffs,"courses":courses})
 def add_subject_save(request):
     if request.method != "POST":
@@ -260,4 +261,55 @@ def editar_estudante_save(request):
                 
             
             
+def editar_conteudo(request, subject_id):
+    subject=Subjects.objects.get(id=subject_id)
+    courses=Courses.objects.all()
+    staffs=CustomUser.objects.filter(user_type=2)
+    return render(request,"hod_template/editar_conteudo_template.html",{"subject":subject,"staffs":staffs,"courses":courses})
+
+def editar_conteudo_save(request):
+    if request.method!="POST":
+        return HttpResponse("<h2>Method Not Allowed</h2>")
+    else:
+        subject_id=request.POST.get("subject_id")
+        subject_name=request.POST.get("subject_name")
+        staff_id=request.POST.get("staff")
+        course_id=request.POST.get("course")
+
+        try:
+            subject=Subjects.objects.get(id=subject_id)
+            subject.subject_name=subject_name
+            staff=CustomUser.objects.get(id=staff_id)
+            subject.staff_id=staff
+            course=Courses.objects.get(id=course_id)
+            subject.course_id=course
+            subject.save()
+
+            messages.success(request, "Dados alterados com sucesso")
+            return HttpResponseRedirect("/editar_conteudo/"+subject_id)
         
+        except Exception as e:
+            messages.error(request, "Ops, algo deu errado ao alterar dados : " + str(e))
+            return HttpResponseRedirect("/editar_conteudo/"+subject_id)
+
+def editar_curso(request,course_id):
+    course=Courses.objects.get(id=course_id)
+    return render(request,"hod_template/editar_curso.html",{"course":course,"id":course_id})
+
+def editar_curso_save(request):
+    if request.method!="POST":
+        return HttpResponse("<h2>Metodo não Permitido </h2>")
+    else:
+        course_id=request.POST.get("course_id")
+        course_name=request.POST.get("course")
+
+        try:
+            course=Courses.objects.get(id=course_id)
+            course.course_name=course_name
+            course.save()
+            messages.success(request, "Dados alterados com sucesso")
+            return HttpResponseRedirect("/editar_curso/"+course_id)
+        
+        except Exception as e:
+            messages.error(request, "Ops, algo deu errado ao alterar dados : " + str(e))
+            return HttpResponseRedirect("/editar_curso/"+course_id)
