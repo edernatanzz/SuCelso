@@ -1,27 +1,39 @@
+import datetime
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
+
 from student_management_app.EmailBackEnd import EmailBackend
 
 
 # ...
-
 def doLogin(request):
     if request.method != "POST":
-        return HttpResponse("<h2>Method not allowed</h2>")
+        return HttpResponse("<h2>Method Not Allowed</h2>")
     else:
-        username = request.POST.get("email")
+        email = request.POST.get("email")
         password = request.POST.get("password")
-        user = authenticate(request, username=username, password=password)
+        
+        # Use o EmailBackend personalizado para autenticação
+        email_backend = EmailBackend()
+        user = email_backend.authenticate(request, username=email, password=password)
 
         if user is not None:
+            # Autenticação bem-sucedida
             login(request, user)
-            return HttpResponseRedirect('/admin_home')
+            if user.user_type == "1":
+                return HttpResponseRedirect('/admin_home')
+            elif user.user_type == "2":
+                return HttpResponseRedirect(reverse("profissional_home"))
+            else:
+                return HttpResponseRedirect(reverse("estudante_home"))
         else:
-            messages.error(request,"Dados incorretos")
+            messages.error(request, "Invalid Login Details")
             return HttpResponseRedirect("/")
-
+    
 #modelo 
 #def name(request):
    # return render(request,".html")

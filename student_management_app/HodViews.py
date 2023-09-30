@@ -179,7 +179,7 @@ def manage_subject(request):
 
 def editar_profissional(request,staff_id):
     staff=Staffs.objects.get(admin=staff_id )
-    return render(request, 'hod_template/editar_profissional_template.html', {"staff":staff})    
+    return render(request, 'hod_template/editar_profissional_template.html', {"staff":staff,"id":staff_id})    
 
 def editar_profissional_save(request):
     if request.method!="POST":
@@ -217,7 +217,7 @@ def editar_profissional_save(request):
 def editar_estudante(request, student_id):
     student=Students.objects.get(admin=student_id)
     courses=Courses.objects.all()
-    return render(request,"hod_template/editar_estudante_template.html", {"student":student,"courses": courses})
+    return render(request,"hod_template/editar_estudante_template.html", {"student":student,"courses": courses,"id":student_id})
     
 
 def editar_estudante_save(request):
@@ -265,7 +265,7 @@ def editar_conteudo(request, subject_id):
     subject=Subjects.objects.get(id=subject_id)
     courses=Courses.objects.all()
     staffs=CustomUser.objects.filter(user_type=2)
-    return render(request,"hod_template/editar_conteudo_template.html",{"subject":subject,"staffs":staffs,"courses":courses})
+    return render(request,"hod_template/editar_conteudo_template.html",{"subject":subject,"staffs":staffs,"courses":courses,"id":subject_id})
 
 def editar_conteudo_save(request):
     if request.method!="POST":
