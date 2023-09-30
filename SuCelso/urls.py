@@ -6,9 +6,9 @@ from SuCelso import settings
 from student_management_app import EstudanteViews, HodViews, profissionalViews, views
 
 urlpatterns = [
-    path('demo', views.showDemoPage),
+    path('demo', views.showDemoPage, name="showDemoPage"),
     path('admin/', admin.site.urls),
-    path('', views.ShowLoginPage),
+    path('', views.ShowLoginPage, name='ShowLoginPage'),
     path('get_user_details', views.GetUserDetails),
     path('logout_user', views.logout_user,name="logout_user"),
     path('doLogin', views.doLogin,name="doLogin"),

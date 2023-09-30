@@ -17,24 +17,24 @@ class LoginCheckMiddleWare(MiddlewareMixin):
                 else:
                     return HttpResponseRedirect(reverse("admin_home"))
             elif user.user_type == "2":
-                if modulename == "student_management_app.StaffViews":
+                if modulename == "student_management_app.profissionalViews":
                     pass
                 elif modulename == "student_management_app.views":
                     pass
                 else:
-                    return HttpResponseRedirect(reverse("profisisonal_home"))
+                    return HttpResponseRedirect(reverse("profissional_home"))
             elif user.user_type == "3":
-                if modulename == "student_management_app.StudentViews":
+                if modulename == "student_management_app.EstudanteViews":
                     pass
                 elif modulename == "student_management_app.views":
                     pass
                 else:
                     return HttpResponseRedirect(reverse("estudante_home"))
             else:
-                return HttpResponseRedirect(reverse("show_login"))
+                return HttpResponseRedirect(reverse("ShowLoginPage"))
 
         else:
-            if request.path == reverse("show_login") or request.path == reverse("do_login"):
+            if request.path == reverse("ShowLoginPage") or request.path == reverse("doLogin"):
                 pass
             else:
-                return HttpResponseRedirect(reverse("show_login"))
+                return HttpResponseRedirect(reverse("ShowLoginPage"))
