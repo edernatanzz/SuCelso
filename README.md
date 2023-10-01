@@ -16,5 +16,7 @@ passo a passo para executar o projeto :(COMANDOS PARA EXECUTAR NO TERMINAL DO VS
 
 
 5-agora feito tudo isso execute o projeto com python manage.py runserver.
-
 vai dar um erro devido a importação do mysql que estava usando e foi removido , então exlua a linha em que o erro aparece (setings, linha 16 e delete)
+
+
+6- com o projeto executado vá em qualquer navegador e pode colocar essse endereço - 127.0.0.1:8000/
