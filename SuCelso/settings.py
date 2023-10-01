@@ -65,7 +65,7 @@ ROOT_URLCONF = 'SuCelso.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['student_management_app/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -154,3 +154,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #AUTH_USER_MODEL = 'student_management_app.CustomUser'
 AUTH_USER_MODEL = "student_management_app.CustomUser"
 AUTHENTICATION_BACKENDS = ['student_management_app.EmailBackEnd.EmailBackend']
+
+EMAIL_BACKEND="django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH=os.path.join(BASE_DIR,"sent_mails")

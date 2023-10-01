@@ -1,6 +1,6 @@
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 
 from SuCelso import settings
 from student_management_app import EstudanteViews, HodViews, profissionalViews, views
@@ -8,6 +8,9 @@ from student_management_app import EstudanteViews, HodViews, profissionalViews, 
 urlpatterns = [
     path('demo', views.showDemoPage, name="showDemoPage"),
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
+    
+    
     path('', views.ShowLoginPage, name='ShowLoginPage'),
     path('get_user_details', views.GetUserDetails),
     path('logout_user', views.logout_user,name="logout_user"),
@@ -42,7 +45,7 @@ urlpatterns = [
     
     # Url para os profissionais
     path('profissional_home', profissionalViews.profissional_home,name="profissional_home"),
-    path('estudante_home', EstudanteViews.estudante_home,name="estudante_home")
+    path('estudante_home', EstudanteViews.estudante_home,name="estudante_home"),
     
    
    
