@@ -313,3 +313,12 @@ def editar_curso_save(request):
         except Exception as e:
             messages.error(request, "Ops, algo deu errado ao alterar dados : " + str(e))
             return HttpResponseRedirect("/editar_curso/"+course_id)
+        
+        
+def course_subjects(request, course_id):
+    # Recupere o curso com base no course_id
+    course = Courses.objects.get(id=course_id)
+
+    # Recupere os assuntos (conteúdos) associados a esse curso
+    subjects = Subjects.objects.filter(course_id=course)
+    return render(request, 'hod_template/conteudo_template.html', {'course': course, 'subjects': subjects})

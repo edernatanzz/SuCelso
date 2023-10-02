@@ -1,0 +1,62 @@
+{% extends 'estudante_template/home_template.html' %}
+
+{% block page_title %}
+
+{% endblock page_title %}
+
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Dados</h3>
+                        </div>
+                        <div class="card-body">
+                            <h1></h1>
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>Seu nome</th>
+                                        <td>{{ user.username }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Curso</th>
+                                        <td>{{ user.students.course_id.course_name }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h2>Aulas</h2>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Acessar Aula</th>
+                                        <th>Professor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for subject in subjects_for_student %}
+                                        <tr>
+                                            <td><a href="">{{ subject.subject_name }}</a>
+                                            <p>link da aula 👆 </p>
+                                            </td>
+
+                                            <td>{{ subject.staff_id.first_name }} {{ subject.staff_id.last_name }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
