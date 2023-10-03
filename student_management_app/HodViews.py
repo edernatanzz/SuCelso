@@ -73,15 +73,15 @@ def add_course_save(request):
         course = request.POST.get("course")
         if not course:
             messages.error(request, "O campo de nome do curso não pode estar em branco.")
-            return HttpResponseRedirect("/adicionar_curso")
+            return HttpResponseRedirect("/add_course")
         try:
             course_model = Courses(course_name=course)
             course_model.save()
             messages.success(request, "Curso adicionado com sucesso")
-            return HttpResponseRedirect("/adicionar_curso")
+            return HttpResponseRedirect("/add_course")
         except Exception as e:
             messages.error(request, "Ops, algo deu errado ao adicionar o curso: " + str(e))
-            return HttpResponseRedirect("/adicionar_curso")
+            return HttpResponseRedirect("/add_course")
     else:
         return HttpResponse("Método não permitido")
     
@@ -305,13 +305,11 @@ def editar_curso_save(request):
     else:
         course_id = request.POST.get("course_id")
         course_name = request.POST.get("course")
-        classroom_link = request.POST.get("classroom_link")
         course_image = request.FILES.get("course_image")
 
         try:
             course = Courses.objects.get(id=course_id)
             course.course_name = course_name
-            course.classroom_link = classroom_link
             if course_image:
                 course.course_image = course_image
             course.save()
