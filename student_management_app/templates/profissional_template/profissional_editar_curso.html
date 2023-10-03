@@ -1,5 +1,4 @@
-{% extends 'profissional_template/home_template.html' %}
-
+{% extends 'hod_template/base_template.html' %}
 {% block page_title %}
 Editar Curso | ID do Curso : {{ course.id }}
 {% endblock page_title %}
@@ -14,7 +13,7 @@ Editar Curso | ID do Curso : {{ course.id }}
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form role="form" action="/profissional_add_course_save" method="post">
+          <form role="form" action="/profissional_editar_curso_save" method="post">
             {% csrf_token %}
             <div class="card-body">
               <div class="form-group">

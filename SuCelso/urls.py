@@ -46,7 +46,18 @@ urlpatterns = [
     # Url para os profissionais
     path('profissional_home', profissionalViews.profissional_home,name="profissional_home"),
     path('visualizar-estudantes/', profissionalViews.visualizar_estudantes, name='visualizar_estudantes'),
+    path('profissional_add_course',profissionalViews.profissional_add_course,name="profissional_add_course"),
+    path('profissional_add_course_save',profissionalViews.profissional_add_course_save,name="profissional_add_course_save"),
+    path('profissional_adicionar_conteudo',profissionalViews.profissional_adicionar_conteudo,name="profissional_adicionar_conteudo"),
+    path('profissional_adicionar_conteudo_save',profissionalViews.profissional_adicionar_conteudo_save,name="profissional_adicionar_conteudo_save"),
     
+    path('profissional_manage_course', profissionalViews.profissional_manage_course, name="profissional_manage_course"),
+    path('profissional_editar_curso/<int:course_id>/', profissionalViews.profissional_editar_curso, name="profissional_editar_curso"),
+    path('profissional_editar_curso_save/', profissionalViews.profissional_editar_curso_save, name="profissional_editar_curso_save"),
+    
+    path('profissional_adicionar_conteudo',profissionalViews.profissional_adicionar_conteudo,name="profissional_adicionar_conteudo"),
+    
+   
     #Url para os estudantes
     path('estudante_home', EstudanteViews.estudante_home,name="estudante_home"),
     path('student_view_result',EstudanteViews.student_view_result,name="student_view_result"),

@@ -1,7 +1,6 @@
 {% extends 'profissional_template/home_template.html' %}
-
 {% block page_title %}
-Editar Curso | ID do Curso : {{ course.id }}
+Add Conteudo
 {% endblock page_title %}
 {% block main_content %}
 <!-- Main content -->
@@ -10,18 +9,36 @@ Editar Curso | ID do Curso : {{ course.id }}
       <div class="row">
         <div class="col-md-12">
           <div class="card-header">
-            <h3 class="card-title">Editar Curso</h3>
+            <h3 class="card-title">adicionar Conteudo </h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form role="form" action="/profissional_add_course_save" method="post">
+          <form role="form" action="/profissional_adicionar_conteudo_save" method="post">
             {% csrf_token %}
             <div class="card-body">
               <div class="form-group">
-                <label >Nome do Curso </label>
-                <input type="text" class="form-control" name="course" placeholder="Nome do curso" value="{{course.course_name}}">
-                <input type="hidden"  name="course_id"  value="{{ course.id }}">
+                <label >Adicionar Conteudo </label>
+                <input type="text" class="form-control" name="subject_name" placeholder="link de acesso ">
               </div>
+               <div class="form-group">
+                <label> Curso </label>
+                <select class="form-control" name="course">
+                    {% for course in courses %}
+                    <option value="{{ course.id }}">{{ course.course_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+
+            <div class="form-group">
+              <label>Selecione o Professor </label>
+              <select class="form-control" name="staff">
+                  {% for staff in staffs %}
+                  <option value="{{ staff.id }}">{{ staff.first_name }} {{ staff.last_name }}</option>
+                  {% endfor %}
+              </select>
+          </div>
+
 
               <div class="form-group">
                 {% if messages %}             
@@ -44,7 +61,7 @@ Editar Curso | ID do Curso : {{ course.id }}
             <!-- /.card-body -->
 
             <div class="card-footer">
-              <button type="submit" class="btn btn-primary btn-block">Salvar Alterações</button>
+              <button type="submit" class="btn btn-primary btn-block">Adicionar Conteudo</button>
             </div>
           </form>
         </div>

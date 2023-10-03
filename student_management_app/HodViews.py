@@ -296,9 +296,6 @@ def editar_curso(request,course_id):
     course=Courses.objects.get(id=course_id)
     return render(request,"hod_template/editar_curso.html",{"course":course,"id":course_id})
 
-from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib import messages
-
 def editar_curso_save(request):
     if request.method != "POST":
         return HttpResponse("<h2>Método não permitido</h2>")
