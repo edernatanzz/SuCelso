@@ -45,8 +45,12 @@ urlpatterns = [
     
     # Url para os profissionais
     path('profissional_home', profissionalViews.profissional_home,name="profissional_home"),
+    path('visualizar-estudantes/', profissionalViews.visualizar_estudantes, name='visualizar_estudantes'),
+    
+    #Url para os estudantes
     path('estudante_home', EstudanteViews.estudante_home,name="estudante_home"),
     path('student_view_result',EstudanteViews.student_view_result,name="student_view_result"),
+    
 
     
     

@@ -73,15 +73,15 @@ def add_course_save(request):
         course = request.POST.get("course")
         if not course:
             messages.error(request, "O campo de nome do curso não pode estar em branco.")
-            return HttpResponseRedirect("/add_course")
+            return HttpResponseRedirect("/adicionar_curso")
         try:
             course_model = Courses(course_name=course)
             course_model.save()
             messages.success(request, "Curso adicionado com sucesso")
-            return HttpResponseRedirect("/add_course")
+            return HttpResponseRedirect("/adicionar_curso")
         except Exception as e:
             messages.error(request, "Ops, algo deu errado ao adicionar o curso: " + str(e))
-            return HttpResponseRedirect("/add_course")
+            return HttpResponseRedirect("/adicionar_curso")
     else:
         return HttpResponse("Método não permitido")
     
@@ -296,23 +296,31 @@ def editar_curso(request,course_id):
     course=Courses.objects.get(id=course_id)
     return render(request,"hod_template/editar_curso.html",{"course":course,"id":course_id})
 
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
+
 def editar_curso_save(request):
-    if request.method!="POST":
-        return HttpResponse("<h2>Metodo não Permitido </h2>")
+    if request.method != "POST":
+        return HttpResponse("<h2>Método não permitido</h2>")
     else:
-        course_id=request.POST.get("course_id")
-        course_name=request.POST.get("course")
+        course_id = request.POST.get("course_id")
+        course_name = request.POST.get("course")
+        classroom_link = request.POST.get("classroom_link")
+        course_image = request.FILES.get("course_image")
 
         try:
-            course=Courses.objects.get(id=course_id)
-            course.course_name=course_name
+            course = Courses.objects.get(id=course_id)
+            course.course_name = course_name
+            course.classroom_link = classroom_link
+            if course_image:
+                course.course_image = course_image
             course.save()
             messages.success(request, "Dados alterados com sucesso")
             return HttpResponseRedirect("/editar_curso/"+course_id)
-        
         except Exception as e:
-            messages.error(request, "Ops, algo deu errado ao alterar dados : " + str(e))
+            messages.error(request, "Ops, algo deu errado ao alterar dados: " + str(e))
             return HttpResponseRedirect("/editar_curso/"+course_id)
+
         
         
 def course_subjects(request, course_id):

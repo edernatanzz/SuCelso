@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sucelso | Login Estudante  </title>
+  <title>Sucelso | Pagina do Estudante  </title>
 
   <!-- Google Font: Source Sans Pro -->
   {% load static %}
@@ -88,7 +88,28 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-     {% block main_content %}{% endblock main_content %}
+     {% block main_content %}
+     
+     <div style="font-family: 'Source Sans Pro', sans-serif; background-color: #f8f9fa; padding: 20px;">
+      <h4 style="text-align: center; color: #333;">Bem-vindo, {{ user.username }}!</h4>
+      
+      <div style="background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+          <p>É com grande alegria que damos as boas-vindas a você à nossa instituição de ensino! Estamos empolgados por tê-lo como parte da nossa comunidade acadêmica.</p>
+  
+          <p>Este é o início de uma jornada incrível, cheia de aprendizado, desafios e oportunidades. Acreditamos que você tem o potencial de alcançar grandes conquistas aqui, e estamos aqui para apoiá-lo em cada passo do caminho.</p>
+  
+          <p>Lembre-se de que a educação é uma jornada de crescimento e desenvolvimento pessoal. Aproveite ao máximo cada aula, cada amizade e cada experiência que esta instituição tem a oferecer.</p>
+  
+          <p>Estamos ansiosos para vê-lo alcançar o sucesso e realizar seus sonhos. Seja bem-vindo e saiba que estamos aqui para ajudá-lo a atingir seus objetivos acadêmicos.</p>
+  
+          <p>Desejamos a você todo o sucesso e realização nesta jornada.</p>
+  
+          <p>Atenciosamente,SuCelso</p>
+      </div>
+  </div>
+  
+     
+     {% endblock main_content %}
 
   </div>
   <!-- /.content-wrapper -->

@@ -40,14 +40,21 @@
                                 <tbody>
                                     {% for subject in subjects_for_student %}
                                         <tr>
-                                            <td><a href="">{{ subject.subject_name }}</a>
-                                            <p>link da aula 👆 </p>
+                                            <td>
+                                                <h3></h3>
+                                                <div class="embed-responsive embed-responsive-16by9" style="width: 400px; height: 250px; "  >
+                                                    <iframe class="embed-responsive-item" src="{{ subject.subject_name|safe }}" allowfullscreen></iframe>
+                                                </div>
+                                                <p>link da aula 👆 </p>
+                                                
                                             </td>
-
                                             <td>{{ subject.staff_id.first_name }} {{ subject.staff_id.last_name }}</td>
                                         </tr>
+                                        <div class="fundo_tela"></div>
+          
                                     {% endfor %}
                                 </tbody>
+                                
                             </table>
 
                             
@@ -59,4 +66,6 @@
         </div>
     </section>
     <!-- /.content -->
+
+    
 {% endblock main_content %}

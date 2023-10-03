@@ -31,7 +31,7 @@ def doLogin(request):
             else:
                 return HttpResponseRedirect(reverse("estudante_home"))
         else:
-            messages.error(request, "Invalid Login Details")
+            messages.error(request, "Dados Inválidos. ")
             return HttpResponseRedirect("/")
     
 #modelo 

@@ -1,0 +1,21 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: admin@gmail.com
+Date: Mon, 02 Oct 2023 23:06:58 -0000
+Message-ID: <169628801818.4960.10684397079970451729@LAPTOP-1686PDHB>
+
+
+Para iniciar a redefinição de senha admin para o sistema SuCelso
+Clique no link abaixo
+
+http://127.0.0.1:8000/accounts/reset/MQ/bvgl7m-0d908301fd6e16d7cefcd78f35407206/
+
+Se o link não funcionar, copie e cole no URL
+
+Obrigado
+SuCelso
+
+-------------------------------------------------------------------------------
