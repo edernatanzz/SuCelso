@@ -20,3 +20,7 @@ vai dar um erro devido a importação do mysql que estava usando e foi removido 
 
 
 6- com o projeto executado vá em qualquer navegador e pode colocar essse endereço - 127.0.0.1:8000/
+
+arquivo da documentação -Documento de requisitos : [Requisitos Funcionais Escola-SuCelso.docx.pdf](https://github.com/edernatanzz/SuCelso/files/12798147/Requisitos.Funcionais.Escola-SuCelso.docx.pdf)
+
+
