@@ -1,4 +1,4 @@
-# SuCelso-Student-Management-System
+# SuCelso- Uma Sistema estudantil para aulas online.
 
 passo a passo para executar o projeto :(COMANDOS PARA EXECUTAR NO TERMINAL DO VSCODE ! )
 
